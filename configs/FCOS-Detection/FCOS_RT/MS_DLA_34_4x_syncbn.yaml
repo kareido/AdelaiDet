@@ -11,15 +11,16 @@ MODEL:
   WEIGHTS: "http://dl.yf.io/dla/models/imagenet/dla34-ba72cf86.pth"
   DLA:
     CONV_BODY: "DLA34"
-    NORM: "SyncBN"
+    NORM: "FrozenBN"
   FPN:
     IN_FEATURES: ["level3", "level4", "level5"]
   FCOS:
+    NUM_CLASSES: 4
     TOP_LEVELS: 0
     SIZES_OF_INTEREST: [64, 128]
     FPN_STRIDES: [8, 16, 32]
     IN_FEATURES: ['p3', 'p4', 'p5']
 SOLVER:
-  STEPS: (300000, 340000)
-  MAX_ITER: 360000
-OUTPUT_DIR: "output/fcos/FCOS_RT_MS_DLA_34_4x_syncbn"
+  STEPS: (36000, 50000)
+  MAX_ITER: 56000
+OUTPUT_DIR: "output/fcos/FCOS_RT_MS_DLA_34_4x_traffic"

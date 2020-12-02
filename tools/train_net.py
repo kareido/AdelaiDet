@@ -234,6 +234,13 @@ def main(args):
 if __name__ == "__main__":
     args = default_argument_parser().parse_args()
     print("Command Line Args:", args)
+
+    from detectron2.data.datasets import register_coco_instances
+
+    register_coco_instances("traffic4_train", {}, "./datasets/traffic_lights/annotations/instances4_train.json", "./datasets/traffic_lights/train")
+    register_coco_instances("traffic4_test", {}, "./datasets/traffic_lights/annotations/instances4_test.json", "./datasets/traffic_lights/test")
+
+
     launch(
         main,
         args.num_gpus,
