@@ -38,16 +38,18 @@ dist/
 .python-version
 
 # project dirs
-/datasets/coco
-/datasets/lvis
-/datasets/pic
-/datasets/ytvos
-/models
-/demo_outputs
-/example_inputs
-/debug
-/weights
-/export
+datasets/coco
+datasets/lvis
+datasets/pic
+datasets/ytvos
+datasets/traffic_lights/**
+!datasets/traffic_lights/README.md
+models
+demo_outputs
+example_inputs
+debug
+weights
+export
 eval.sh
 
 demo/performance.py
