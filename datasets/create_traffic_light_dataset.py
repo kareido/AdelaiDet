@@ -146,25 +146,26 @@ for idx, img_path in enumerate(train_split):
     visited = np.zeros_like(label, dtype=np.bool)
     max_area = float('-inf')
 
-    for y, x in idx_arr[label == TL_LABEL]:
-        status, area, y_range, x_range = _dfs(label, visited, y, x, area=0)
-        if status and area > max_area:
-            max_area = area
-            at = (y_range, x_range)
-    print(idx, name, at, max_area)
+    if gt_color != 'None':
+        for y, x in idx_arr[label == TL_LABEL]:
+            status, area, y_range, x_range = _dfs(label, visited, y, x, area=0)
+            if status and area > max_area:
+                max_area = area
+                at = (y_range, x_range)
+        print(idx, name, at, max_area)
 
-    x1, y1, dx, dy = at[1][0], at[0][0], at[1][1] - at[1][0], at[0][1] - at[0][0]
-    x1, y1, dx, dy = int(x1), int(y1), int(dx), int(dy)
+        x1, y1, dx, dy = at[1][0], at[0][0], at[1][1] - at[1][0], at[0][1] - at[0][0]
+        x1, y1, dx, dy = int(x1), int(y1), int(dx), int(dy)
 
-    train_json['annotations'].append({
-        "area": max_area,
-        "bbox": [x1, y1, dx, dy],
-        "iscrowd": 0,
-        "image_id": idx,
-        "category_id": 1 if gt_color == 'Green' else 2,
-        "id": ANNO_IDX,
-    })
-    ANNO_IDX += 1
+        train_json['annotations'].append({
+            "area": max_area,
+            "bbox": [x1, y1, dx, dy],
+            "iscrowd": 0,
+            "image_id": idx,
+            "category_id": 1 if gt_color == 'Green' else 2,
+            "id": ANNO_IDX,
+        })
+        ANNO_IDX += 1
 
     # for other label
     for CAT, LABEL in OTHER_LABELS:
@@ -213,25 +214,26 @@ for idx, img_path in enumerate(test_split):
     visited = np.zeros_like(label, dtype=np.bool)
     max_area = float('-inf')
 
-    for y, x in idx_arr[label == TL_LABEL]:
-        status, area, y_range, x_range = _dfs(label, visited, y, x, area=0)
-        if status and area > max_area:
-            max_area = area
-            at = (y_range, x_range)
-    print(idx, name, at, max_area)
+    if gt_color != 'None':
+        for y, x in idx_arr[label == TL_LABEL]:
+            status, area, y_range, x_range = _dfs(label, visited, y, x, area=0)
+            if status and area > max_area:
+                max_area = area
+                at = (y_range, x_range)
+        print(idx, name, at, max_area)
 
-    x1, y1, dx, dy = at[1][0], at[0][0], at[1][1] - at[1][0], at[0][1] - at[0][0]
-    x1, y1, dx, dy = int(x1), int(y1), int(dx), int(dy)
+        x1, y1, dx, dy = at[1][0], at[0][0], at[1][1] - at[1][0], at[0][1] - at[0][0]
+        x1, y1, dx, dy = int(x1), int(y1), int(dx), int(dy)
 
-    test_json['annotations'].append({
-        "area": max_area,
-        "bbox": [x1, y1, dx, dy],
-        "iscrowd": 0,
-        "image_id": idx,
-        "category_id": 1 if gt_color == 'Green' else 2,
-        "id": ANNO_IDX,
-    })
-    ANNO_IDX += 1
+        test_json['annotations'].append({
+            "area": max_area,
+            "bbox": [x1, y1, dx, dy],
+            "iscrowd": 0,
+            "image_id": idx,
+            "category_id": 1 if gt_color == 'Green' else 2,
+            "id": ANNO_IDX,
+        })
+        ANNO_IDX += 1
 
     # for other label
     for CAT, LABEL in OTHER_LABELS:

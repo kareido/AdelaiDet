@@ -4,6 +4,11 @@ You can get the traffic_lights dataset folder on auton cluster at:
 ```
 /zfsauton/datasets/ArgoRL/zheh/datasets/traffic_lights
 ```  
+
+Raw data for generating this dataset (including semantic data) is on auton cluster at:  
+```
+/zfsauton/datasets/ArgoRL/zheh/datasets/traffic_lights_raw_data
+```  
   
 By default, put it as:  
 ```
